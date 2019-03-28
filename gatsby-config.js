@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: "Sequoia Taylor",
     subtitle: "The best education is the one you give yourself.",
-    paragraph: "Coming in 2019",
+    paragraph: "Website under construction - coming soon 2019",
     description:
       "Achieving goals via manifestation and finding creative ways to give, education has been my ticket to a better life.",
   },
