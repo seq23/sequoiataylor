@@ -1,0 +1,72 @@
+body {
+  font-family: 'Playfair Display', serif;
+  background-color: #1d1d1d;
+  color: white;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+}
+
+.subtitle {
+  line-height: 1.5;
+  font-size: 1.25rem;
+  margin-bottom: 1.25em;
+}
+
+.text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+}
+
+@media (min-width: 767px) {
+  .title {
+    font-size: 4rem;
+  }
+  .subtitle {
+    font-size: 1.5rem;
+  }
+  .text {
+    font-size: 1.25rem;
+  }
+}
+
+.lines {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  color: #fdb552;
+  width: 65%;
+  margin: 1rem auto 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .lines {
+    width: 80%;
+  }
+}
+
+.lines svg {
+  display: inline-block;
+  margin: 0 0.5rem;
+}
+
+.lines::before,
+.lines::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: #fdb552;
+}
+
