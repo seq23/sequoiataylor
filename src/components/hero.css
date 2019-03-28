@@ -28,6 +28,7 @@ body {
 .text {
   font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
+  padding: 0 2rem;
 }
 
 @media (min-width: 767px) {
@@ -36,9 +37,6 @@ body {
   }
   .subtitle {
     font-size: 1.5rem;
-  }
-  .text {
-    font-size: 1.25rem;
   }
 }
 
