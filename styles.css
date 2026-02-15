@@ -308,3 +308,13 @@ input:focus, textarea:focus{
 
 /* honeypot hidden */
 .hp{position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden}
+
+/* Side projects link cards */
+.link-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
+@media(min-width:720px){.link-grid{grid-template-columns:1fr 1fr}}
+.link-card{display:block;border:1px solid rgba(0,0,0,.1);border-radius:14px;padding:14px;text-decoration:none}
+.link-card:hover{transform:translateY(-1px)}
+.link-card-top{display:flex;justify-content:space-between;align-items:center}
+.link-title{font-weight:600}
+.link-desc{margin:8px 0;color:#555}
+.link-url{font-size:.9em;opacity:.7}
