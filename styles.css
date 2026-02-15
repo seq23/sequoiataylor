@@ -60,59 +60,17 @@ body{
 }
 .skip-link:focus{left:1rem}
 
-.topbar{
-  position:sticky;
-  top:0;
-  z-index:20;
-  background:rgba(255,255,255,.75);
-  backdrop-filter:saturate(1.8) blur(10px);
-  border-bottom:1px solid var(--border);
-}
-:root[data-theme="dark"] .topbar{
-  background:rgba(11,18,32,.75);
-}
-.topbar-inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:1rem;
-  padding:.85rem 0;
-}
+
+:root[data-theme="dark"] 
+
 .brand{
   font-weight:700;
   text-decoration:none;
   color:var(--text);
   letter-spacing:.2px;
 }
-.nav{
-  display:flex;
-  gap:1rem;
-}
-.nav a{
-  color:var(--muted);
-  text-decoration:none;
-  font-weight:600;
-  font-size:.95rem;
-}
-.nav a:hover{color:var(--text)}
 
-.theme-toggle{
-  border:1px solid var(--border);
-  background:transparent;
-  color:var(--text);
-  border-radius:999px;
-  padding:.45rem .6rem;
-  cursor:pointer;
-}
-.theme-toggle:focus{outline:3px solid var(--focus); outline-offset:2px}
 
-.hero{
-  display:grid;
-  grid-template-columns: 240px 1fr;
-  gap:2rem;
-  padding:2rem 0 1.25rem;
-  align-items:center;
-}
 @media (max-width: 720px){
   .hero{grid-template-columns: 1fr; text-align:left}
   .hero-media{display:flex; justify-content:flex-start}
