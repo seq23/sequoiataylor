@@ -9,15 +9,33 @@
 
   // Theme handling (respects OS preference, persists selection)
   const root = document.documentElement;
-  const btn = document.querySelector("[data-theme-toggle]");
+  const btn =
+    document.querySelector("[data-theme-toggle]") ||
+    document.getElementById("modeToggle");
+
   const stored = localStorage.getItem("st_theme");
 
-  const prefersDark = () => window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const prefersDark = () =>
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  const updateToggleUI = (theme) => {
+    if (!btn) return;
+    const isDark = theme === "dark";
+    btn.textContent = isDark ? "☀" : "☾";
+    btn.setAttribute(
+      "aria-label",
+      isDark ? "Switch to light mode" : "Switch to dark mode"
+    );
+    btn.setAttribute("title", isDark ? "Switch to light mode" : "Switch to dark mode");
+  };
 
   const setTheme = (theme) => {
     if (theme === "dark") root.setAttribute("data-theme", "dark");
     else root.setAttribute("data-theme", "light");
+
     localStorage.setItem("st_theme", theme);
+    updateToggleUI(theme);
   };
 
   if (stored === "dark" || stored === "light") {
