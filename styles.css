@@ -76,13 +76,16 @@ body{
   .hero-media{display:flex; justify-content:flex-start}
 }
 
-.portrait{
-  width:240px;
-  height:240px;
-  object-fit:cover;
-  border-radius:999px;
-  border:1px solid var(--border);
-  box-shadow:var(--shadow);
+.portrait {
+  width: 240px;
+  height: 240px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: 50% 10%;
+  display: block;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
 }
 
 h1{
