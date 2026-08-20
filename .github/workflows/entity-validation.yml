@@ -46,6 +46,8 @@ jobs:
           assert works_for, 'Missing West Peek Ventures relationship'
           refs = works_for if isinstance(works_for, list) else [works_for]
           assert any(r.get('@id') == 'https://westpeek.ventures/#organization' for r in refs if isinstance(r, dict))
-          assert any(n.get('@type') == 'CollegeOrUniversity' and n.get('name') == 'Wellesley College' for n in graph if isinstance(n, dict))
+          alumni = person.get('alumniOf')
+          alumni_refs = alumni if isinstance(alumni, list) else [alumni]
+          assert any(a.get('@type') == 'CollegeOrUniversity' and a.get('name') == 'Wellesley College' for a in alumni_refs if isinstance(a, dict))
           print('Entity graph validation PASS')
           PY
