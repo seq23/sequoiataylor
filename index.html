@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="Sequoia Taylor — investing, liquidity solutions, and founder support." />
   <title>Sequoia Taylor</title>
+  <link rel="canonical" href="https://sequoiataylor.com/" />
 
-  
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
@@ -14,8 +14,14 @@
   <meta property="og:title" content="Sequoia Taylor" />
   <meta property="og:description" content="Wall Street → venture capital → startup trenches. Liquidity solutions, secondaries, and founder support." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="/assets/sequoia.jpg" />
+  <meta property="og:url" content="https://sequoiataylor.com/" />
+  <meta property="og:site_name" content="Sequoia Taylor" />
+  <meta property="og:image" content="https://sequoiataylor.com/assets/sequoia.jpg" />
+  <meta property="og:image:alt" content="Portrait of Sequoia Taylor" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sequoia Taylor" />
+  <meta name="twitter:description" content="Wall Street → venture capital → startup trenches. Liquidity solutions, secondaries, and founder support." />
+  <meta name="twitter:image" content="https://sequoiataylor.com/assets/sequoia.jpg" />
 
   <!-- Basic favicon (emoji) -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%E2%9C%A8%3C/text%3E%3C/svg%3E">
@@ -26,13 +32,88 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Sequoia Taylor",
-    "url": "https://sequoiataylor.com",
-    "sameAs": [
-      "https://www.linkedin.com/in/sequoiataylor",
-      "https://x.com/betterSequoia",
-      "https://www.threads.net/@betterSequoia","https://time-2-read.com","https://heygetonmylevel.com"]
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://sequoiataylor.com/#webpage",
+        "url": "https://sequoiataylor.com/",
+        "name": "Sequoia Taylor",
+        "description": "Sequoia Taylor — investing, liquidity solutions, and founder support.",
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://sequoiataylor.com/assets/sequoia.jpg"
+        },
+        "mainEntity": {
+          "@id": "https://sequoiataylor.com/#person"
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://sequoiataylor.com/#person",
+        "name": "Sequoia Taylor",
+        "url": "https://sequoiataylor.com/",
+        "image": "https://sequoiataylor.com/assets/sequoia.jpg",
+        "mainEntityOfPage": {
+          "@id": "https://sequoiataylor.com/#webpage"
+        },
+        "jobTitle": [
+          "General Partner",
+          "Investor"
+        ],
+        "description": "Investor and operator with experience across Wall Street, venture capital, private-market liquidity, and founder support.",
+        "worksFor": {
+          "@id": "https://westpeek.ventures/#organization"
+        },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Wellesley College",
+          "url": "https://www.wellesley.edu/"
+        },
+        "knowsAbout": [
+          "Venture capital",
+          "Private markets",
+          "Secondary transactions",
+          "Founder support"
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/in/sequoiataylor",
+          "https://x.com/betterSequoia",
+          "https://www.threads.net/@betterSequoia"
+        ],
+        "owns": [
+          { "@id": "https://time-2-read.com/#website" },
+          { "@id": "https://heygetonmylevel.com/#website" },
+          { "@id": "https://aplayermode.com/#website" }
+        ]
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://westpeek.ventures/#organization",
+        "name": "West Peek Ventures",
+        "url": "https://westpeek.ventures/"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://time-2-read.com/#website",
+        "name": "Time-2-Read",
+        "url": "https://time-2-read.com/",
+        "creator": { "@id": "https://sequoiataylor.com/#person" }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://heygetonmylevel.com/#website",
+        "name": "Hey Get On My Level",
+        "url": "https://heygetonmylevel.com/",
+        "creator": { "@id": "https://sequoiataylor.com/#person" }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://aplayermode.com/#website",
+        "name": "A Player Mode",
+        "url": "https://aplayermode.com/",
+        "creator": { "@id": "https://sequoiataylor.com/#person" }
+      }
+    ]
   }
   </script>
 </head>
