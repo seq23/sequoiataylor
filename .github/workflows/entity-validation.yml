@@ -1,0 +1,51 @@
+name: Entity Validation
+
+on:
+  push:
+    branches:
+      - 'work/**'
+      - master
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  validate-entity-graph:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate structured data
+        run: |
+          python - <<'PY'
+          import json, re, pathlib
+          html = pathlib.Path('index.html').read_text(encoding='utf-8')
+          assert '<link rel="canonical" href="https://sequoiataylor.com/"' in html
+          blocks = re.findall(r'<script\s+type="application/ld\+json">\s*(.*?)\s*</script>', html, flags=re.S)
+          assert blocks, 'No JSON-LD block found'
+          data = json.loads(blocks[0])
+          assert data.get('@context') == 'https://schema.org'
+          graph = data.get('@graph')
+          assert isinstance(graph, list) and graph, 'Missing @graph'
+          by_id = {n.get('@id'): n for n in graph if isinstance(n, dict) and n.get('@id')}
+          person = by_id['https://sequoiataylor.com/#person']
+          webpage = by_id['https://sequoiataylor.com/#webpage']
+          assert person['name'] == 'Sequoia Taylor'
+          assert webpage['mainEntity']['@id'] == person['@id']
+          assert person['mainEntityOfPage']['@id'] == webpage['@id']
+          same_as = set(person.get('sameAs', []))
+          assert 'https://time-2-read.com' not in same_as
+          assert 'https://heygetonmylevel.com' not in same_as
+          assert 'https://www.linkedin.com/in/sequoiataylor' in same_as
+          works_for = person.get('worksFor') or person.get('memberOf')
+          assert works_for, 'Missing West Peek Ventures relationship'
+          refs = works_for if isinstance(works_for, list) else [works_for]
+          assert any(r.get('@id') == 'https://westpeek.ventures/#organization' for r in refs if isinstance(r, dict))
+          assert any(n.get('@type') == 'CollegeOrUniversity' and n.get('name') == 'Wellesley College' for n in graph if isinstance(n, dict))
+          print('Entity graph validation PASS')
+          PY
