@@ -26,6 +26,7 @@ jobs:
           import json, re, pathlib
           html = pathlib.Path('index.html').read_text(encoding='utf-8')
           assert '<link rel="canonical" href="https://sequoiataylor.com/"' in html
+          assert '<li>Working on launching a fund</li>' in html, 'Visible fund-launch language changed unexpectedly'
           blocks = re.findall(r'<script\s+type="application/ld\+json">\s*(.*?)\s*</script>', html, flags=re.S)
           assert blocks, 'No JSON-LD block found'
           data = json.loads(blocks[0])
@@ -38,16 +39,33 @@ jobs:
           assert person['name'] == 'Sequoia Taylor'
           assert webpage['mainEntity']['@id'] == person['@id']
           assert person['mainEntityOfPage']['@id'] == webpage['@id']
+          assert 'General Partner' in person.get('jobTitle', [])
+          assert 'West Peek Ventures' in person.get('description', '')
+          assert len(person.get('description', '')) >= 220
           same_as = set(person.get('sameAs', []))
           assert 'https://time-2-read.com' not in same_as
           assert 'https://heygetonmylevel.com' not in same_as
           assert 'https://www.linkedin.com/in/sequoiataylor' in same_as
           works_for = person.get('worksFor') or person.get('memberOf')
-          assert works_for, 'Missing West Peek Ventures relationship'
           refs = works_for if isinstance(works_for, list) else [works_for]
           assert any(r.get('@id') == 'https://westpeek.ventures/#organization' for r in refs if isinstance(r, dict))
           alumni = person.get('alumniOf')
           alumni_refs = alumni if isinstance(alumni, list) else [alumni]
           assert any(a.get('@type') == 'CollegeOrUniversity' and a.get('name') == 'Wellesley College' for a in alumni_refs if isinstance(a, dict))
+          knows = set(person.get('knowsAbout', []))
+          for required in ['Venture capital','Private markets','Secondary transactions','Startup operations','Founder support','Early-stage investing','Technology companies']:
+              assert required in knows, f'Missing knowsAbout: {required}'
+          subject_refs = {r.get('@id') for r in person.get('subjectOf', []) if isinstance(r, dict)}
+          assert 'https://sequoiataylor.com/#finra-profile' in subject_refs
+          finra = by_id['https://sequoiataylor.com/#finra-profile']
+          assert finra.get('@type') == 'ProfilePage'
+          assert finra.get('about', {}).get('@id') == person['@id']
+          assert finra.get('url') == 'https://files.brokercheck.finra.org/individual/individual_4987360.pdf'
+          for project_id in ['https://time-2-read.com/#website','https://heygetonmylevel.com/#website','https://aplayermode.com/#website']:
+              node = by_id[project_id]
+              assert node.get('creator', {}).get('@id') == person['@id']
+          forbidden = ['Fund I launched','Fund I actively investing','fund closed']
+          machine_text = json.dumps(data)
+          assert not any(term in machine_text for term in forbidden)
           print('Entity graph validation PASS')
           PY
